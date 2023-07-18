@@ -14,7 +14,13 @@ stdin.on('data', (key) => {
 const timerAlarm = function() {
   for (const sec of input) {
     const beep = parseFloat(sec);
-    if (!isNaN(beep) && beep >= 0) {
+    if (!isNaN(beep) && beep === 1) {
+      console.log(`setting timer for 1 second...`);
+      setTimeout(() => {
+        process.stdout.write('\x07');
+      }, beep * 1000);
+    }
+    if (!isNaN(beep) && beep === 0 || beep > 1) {
       console.log(`setting timer for ${sec} seconds...`);
       setTimeout(() => {
         process.stdout.write('\x07');
